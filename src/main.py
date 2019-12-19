@@ -19,8 +19,8 @@ label_data_train = y2sentiment(y_labels_train)
 y_class_test = y2labels(y_labels_test)
 label_data_test = y2sentiment(y_labels_test)
 # Data Prepare
-x_train, y_train = prepare_data(reviews_train, y_class_train, '../models/word.model')
-x_valid, y_valid = prepare_data(reviews_test, y_class_test, '../models/word.model')
+x_train, y_train = prepare_data(reviews_train, label_data_train, '../models/word.model')
+x_valid, y_valid = prepare_data(reviews_test, label_data_test, '../models/word.model')
 
 # print(len(x_train), len(y_train))
-CNN.train(x_train, y_train, x_valid, y_valid, '../models/vi-sentiment-analysis-5class.models')
+CNN.train(x_train, y_train, x_valid, y_valid, '../models/vi-sentiment-analysis.models')

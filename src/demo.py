@@ -24,8 +24,8 @@ data_prid = data_prid.reshape(data_prid.shape[0], 200, 128, 1).astype('float32')
 result = model.predict(data_prid)
 for i in result:
     if np.argmax(i) == 0:
-        print("Label predict: POSITIVE", np.argmax(i))
+        print("Label predict: NEGATIVE", np.argmax(i))
     elif np.argmax(i) == 1:
         print("Label predict: NEUTRAL", np.argmax(i))
     else:
-        print("Label predict: NEGATIVE", np.argmax(i))
+        print("Label predict: POSITIVE", np.argmax(i))

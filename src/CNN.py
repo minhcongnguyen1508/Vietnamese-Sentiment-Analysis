@@ -3,7 +3,7 @@ import tensorflow as tf
 from tensorflow.contrib import keras
 
 class CNN:
-    def __init__(self, models=None, sequence_length=200, embedding_size=128, num_classes=5, 
+    def __init__(self, models=None, sequence_length=200, embedding_size=128, num_classes=3, 
                 filter_sizes=3, num_filters=150, epochs=30, batch_size=30, learning_rate=0.1, dropout_rate=0.5):
         self.sequence_length = sequence_length
         self.embedding_size = embedding_size
