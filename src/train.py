@@ -7,6 +7,11 @@ from gensim.models import Word2Vec
 import gensim.models.keyedvectors as word2vec
 from copy import deepcopy
 
+# Create Word.model
+# reviews, y_labels = load_data_from_dir('../data/raw')
+# reviews = pre_process(reviews)
+# x = WordModel(reviews)
+
 # Create model
 CNN = CNN()
 
