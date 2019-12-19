@@ -1,51 +1,26 @@
-from load_data import load_data_from_dir, load_data_from_file, y2labels, y2sentiment
-from gensim.models import Word2Vec
+from utils import load_data_from_dir, load_data_from_file, y2labels, y2sentiment, pre_process, prepare_data
 import numpy as np
-
-reviews, y_labels = load_data_from_dir('../data/train')
-y_label = y2labels(y_labels)
-labels = y2sentiment(y_labels)
-
-# input_gensim = []
-# for review in reviews:
-#     input_gensim.append(review.split())
-    
-# model = Word2Vec(input_gensim, size=128, window=5, min_count=0, workers=4, sg=1)
-# model.wv.save("word.model")
-
-# print(input_gensim)
-
+from word2vec import comment_embedding, WordModel
+from CNN import CNN
+from text_feature import LowerCase, RemoveTone, CountEmoticons, RemoveEmoticons, RemoveDuplicate
+from gensim.models import Word2Vec
 import gensim.models.keyedvectors as word2vec
-model_embedding = word2vec.KeyedVectors.load('./word.model')
+from copy import deepcopy
 
-word_labels = []
-max_seq = 200
-embedding_size = 128
+# Create model
+CNN = CNN()
 
-for word in model_embedding.vocab.keys():
-    word_labels.append(word)
-    
-def comment_embedding(comment):
-    matrix = np.zeros((max_seq, embedding_size))
-    words = comment.split()
-    lencmt = len(words)
+# Load data
+reviews_train, y_labels_train = load_data_from_dir('../data/train')
+reviews_test, y_labels_test = load_data_from_dir('../data/test')
 
-    for i in range(max_seq):
-        indexword = i % lencmt
-        if (max_seq - i < lencmt):
-            break
-        if(words[indexword] in word_labels):
-            matrix[i] = model_embedding[words[indexword]]
-    matrix = np.array(matrix)
-    return matrix
+y_class_train = y2labels(y_labels_train)
+label_data_train = y2sentiment(y_labels_train)
+y_class_test = y2labels(y_labels_test)
+label_data_test = y2sentiment(y_labels_test)
+# Data Prepare
+x_train, y_train = prepare_data(reviews_train, y_class_train, '../models/word.model')
+x_valid, y_valid = prepare_data(reviews_test, y_class_test, '../models/word.model')
 
-train_data = []
-label_data = y_label
-
-for i in reviews:
-    train_data.append(comment_embedding(i))
-
-train_data = np.array(train_data)
-
-print(train_data[0])
-print(label_data[0])
+# print(len(x_train), len(y_train))
+CNN.train(x_train, y_train, x_valid, y_valid, '../models/vi-sentiment-analysis-5class.models')
