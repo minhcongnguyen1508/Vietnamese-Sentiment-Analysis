@@ -4,7 +4,8 @@
 How to run models
 
 # Use Visual Studio Code
-Step 1: Clone git \n
+Step 1: Clone git 
+
 Step 2: Install Package in requirement. Activate environment
 Step 3: Run file demo.py
 
