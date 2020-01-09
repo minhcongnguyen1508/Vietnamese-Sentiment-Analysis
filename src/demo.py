@@ -7,7 +7,7 @@ from utils import pre_process
 
 model = tf.keras.models.load_model("../models/vi-sentiment-analysis.models")
 
-text = ["San pham dep, minh rat thich chat vai nay!!!! 👍👍👍", "Làm ăn như ccccc 😡😡😡", "Nghỉ mẹ đi :(", "Cũng tạm"]
+text = ["San pham dep, minh rat thich chat vai nay!!!! 👍👍👍", "Làm ăn như ccccc 😡😡😡", "Nghỉ mẹ đi :(", "Cũng tạm", "Shop chán vkl", "Ncl ổn, mk cho ⭐⭐⭐⭐⭐"]
 text = pre_process(text)
 
 # print(text)

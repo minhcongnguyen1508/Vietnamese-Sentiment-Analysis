@@ -43,39 +43,49 @@ def load_data_from_dir(path):
 
 def y2sentiment(labels):
     sentiments = [] 
+    distribution = [0, 0, 0]
     for line in labels:
         y_sentiment = [0, 0, 0] # NEG = -1; POS = 1, NEU = 0
         if line[:3] == 'NEG':
             y_sentiment[0] = 1
+            distribution[0] += 1
             sentiments.append(y_sentiment)
         elif line[:3] == 'POS':
             y_sentiment[2] = 1
+            distribution[2] += 1
             sentiments.append(y_sentiment)
         else:
             y_sentiment[1] = 1
+            distribution[1] += 1
             sentiments.append(y_sentiment)
-    return sentiments
+    return sentiments, distribution
 
 def y2labels(labels):
     y_labels = []
+    distribution = [0, 0, 0, 0, 0]
     for line in labels:
         y_class = [0, 0, 0, 0, 0]
         if line[-1] == '1':
             y_class[0] = 1
+            distribution[0] += 1
             y_labels.append(y_class)
         elif line[-1] == '2':
             y_class[1] = 1
+            distribution[1] += 1
             y_labels.append(y_class)
         elif line[-1] == '3':
             y_class[2] = 1
+            distribution[2] += 1
             y_labels.append(y_class)
         elif line[-1] == '4':
             y_class[3] = 1
+            distribution[3] += 1
             y_labels.append(y_class)
         elif line[-1] == '5':
             y_class[4] = 1
+            distribution[4] += 1
             y_labels.append(y_class)
-    return y_labels
+    return y_labels, distribution
 
 def pre_process(text):
     text = LowerCase(text)
@@ -84,9 +94,7 @@ def pre_process(text):
     text = RemoveDuplicate(text)
     return text
 
-def prepare_data(x_text, y_labels, path_model='../models/word.model'):
-    sequence_length = 200
-    embedding_size = 128
+def prepare_data(x_text, y_labels, path_model='./models/word.model', sequence_length = 150, embedding_size = 128):
     model_embedding = word2vec.KeyedVectors.load(path_model)
     x_text = pre_process(x_text)
     x_text = remove_tone_5class(x_text, y_labels, model_embedding)
@@ -98,7 +106,7 @@ def prepare_data(x_text, y_labels, path_model='../models/word.model'):
 def remove_tone_3class(reviews, label_data, model_embedding):
     data = []
     for i in range(len(reviews)):
-        if reviews[i] == '':
+        if reviews[i] == ' ':
             if np.argmax(label_data[i]) == 0:
                 reviews[i] += 'negative'
             elif np.argmax(label_data[i]) == 1:
@@ -111,7 +119,7 @@ def remove_tone_3class(reviews, label_data, model_embedding):
 def remove_tone_5class(reviews, label_data, model_embedding):
     data = []
     for i in range(len(reviews)):
-        if reviews[i] == '':
+        if reviews[i] == ' ':
             if np.argmax(label_data[i]) == 0 or np.argmax(label_data[i]) == 1:
                 reviews[i] += 'negative'
             elif np.argmax(label_data[i]) == 2:

@@ -5,7 +5,7 @@ import numpy as np
 from utils import pre_process
 from underthesea import word_tokenize
 
-text = ["San pham dep, minh rat thich chat vai nay!!!! 👍👍👍", "Làm ăn như ccccc 😡😡😡", "<3", "💥💥💥Giao hàng nhanh.👏 💥💥💥", "🔥 <3"]
+text = ["San pham dep, minh rat thich chat vai nay!!!! 👍👍👍", "Làm ăn như ccccc 😡😡😡", "<3", "💥💥💥Giao hàng nhanh.👏 💥💥💥", "🔥 <3", "Shop chán vkl", "Nchung là ổn, giao hàng nhanh kb cho ⭐⭐⭐⭐⭐"]
 text = pre_process(text)
 print(text)
 for i in range(len(text)):
