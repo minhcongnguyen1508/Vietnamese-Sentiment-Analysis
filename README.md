@@ -6,9 +6,13 @@ How to run models
 # Use Visual Studio Code
 Step 1: Clone git 
 
-Step 2: Install Package in file requirement.txt & Activate environment
+Step 2: Install Package in file requirement.txt & Activate environment:
+        cd Vietnamese-Sentiment-Analysis
+        pip3 install -r requirement.txt
+     or pip install -r requirement.txt
 
-Step 3: Run file demo.py
+Step 3: cd src
+        Run file demo.py
 
 If you want train new models. 
 
