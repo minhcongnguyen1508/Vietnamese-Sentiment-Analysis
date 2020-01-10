@@ -1,3 +1,5 @@
+# -*- coding: utf -8 -*-
+   
 import tensorflow as tf
 from word2vec import comment_embedding, WordModel
 import gensim.models.keyedvectors as word2vec
