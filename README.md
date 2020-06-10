@@ -20,9 +20,15 @@ Step 3: cd src
 
 # If you want train new models. 
 
-Step 1: Create new domain Word.model. Run file 2 line uncomment "# Create Word.Model" code in file train.py
+Step 1: Create new domain Word.model. Change code in file train.py
+        
+        Uncomment:
+        
+        reviews, y_labels = load_data_from_dir('../data/raw')
+        
+        y_5class_labels, dis = y2labels(y_labels)
 
-Step 2: Add new data train & valid link into "# load data"
+Step 2: Add new data train & valid path in file train.py ("# load data")
 
 Step 3: Train model "python train.py"
 
