@@ -38,4 +38,10 @@ Accuracy for 5 lable is 60%
 
 Use Convolution Neural Network
 
+# Improvement:
+Now, My model is biased for Label 5. => Model quality is very low. You can see confusion matrix.
+
+You can improve my model based on Oversampling and data Augmentation techniques.
+
+
 @Author: Minh Cong
