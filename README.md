@@ -3,18 +3,15 @@
 
 How to run models
 
-# Use Visual Studio Code
-Step 1: Clone git 
+# Install
+Step 1: clone git https://github.com/minhcongnguyen1508/Vietnamese-Sentiment-Analysis.git
 
-Step 2: Install Package in file requirement.txt & Activate environment:
+Step 2: Activate environment (if you use venv) & install package in file requirement.txt:
 
         cd Vietnamese-Sentiment-Analysis
         
-        pip3 install -r requirement.txt
-        
-     or pip install -r requirement.txt
 
-Step 3: cd src
+Step 3: cd Vietnamese-Sentiment-Analysis/src
 
         Run file demo.py
 
@@ -32,11 +29,15 @@ Step 2: Add new data train & valid path in file train.py ("# load data")
 
 Step 3: Train model "python train.py"
 
-Accuracy for 3 labels POS, NEU, NEG is 80 %
+# Result:
 
-Accuracy for 5 lable is 60%
+Accuracy (3 labels POS, NEU, NEG): 80 %
 
-Use Convolution Neural Network
+Accuracy (5 lable): 60%
+
+# Techniques:
+
+Using Convolution Neural Network
 
 # Improvement:
 Now, My model is biased for Label 5. => Model quality is very low. You can see confusion matrix.
